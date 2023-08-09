@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" onKeyPressed="#mainPaneKeyPressed" onKeyReleased="#mainPaneKeyReleased" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.player.player.controllers.MainController">
+   <top>
+      <HBox fx:id="buttonBar" alignment="CENTER_LEFT" prefHeight="30.0" spacing="5.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="openBtn" mnemonicParsing="false" onAction="#openMediaBtnAction" text="Open" />
+            <MenuButton mnemonicParsing="false" text="Subtitle">
+              <items>
+                <MenuItem fx:id="addSubBtn" mnemonicParsing="false" onAction="#addSubBtnAction" text="Add Subtitle File..." />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <Menu fx:id="subTracks" mnemonicParsing="false" text="Sub Track" />
+              </items>
+            </MenuButton>
+            <MenuButton mnemonicParsing="false" text="Audio">
+              <items>
+                  <Menu fx:id="audioTracks" mnemonicParsing="false" text="Audio Track" />
+              </items>
+            </MenuButton>
+            <Button fx:id="dictionaryBtn" mnemonicParsing="false" onAction="#dictionaryBtnAction" text="Dictionary" />
+         </children>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </HBox>
+   </top>
+   <bottom>
+       <AnchorPane fx:id="controlsPane" prefHeight="60.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+           <children>
+               <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                   <children>
+                       <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="557.0" spacing="5.0" VBox.vgrow="ALWAYS">
+                           <children>
+                               <Text fx:id="currentTimeLbl" strokeType="OUTSIDE" strokeWidth="0.0" text="0:00:00" />
+                               <Slider fx:id="timelineSlider" max="1000.0" HBox.hgrow="ALWAYS" />
+                               <Text fx:id="endTimeLbl" strokeType="OUTSIDE" strokeWidth="0.0" text="0:00:00" />
+                           </children>
+                           <opaqueInsets>
+                               <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                               <Insets />
+                           </VBox.margin>
+                           <padding>
+                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                       </HBox>
+                       <HBox alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="ALWAYS">
+                           <children>
+                               <Button fx:id="playbackBtn" mnemonicParsing="false" onAction="#playbackBtnAction" text="Play" />
+                        <Pane prefHeight="25.0" prefWidth="356.0" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="muteBtn" mnemonicParsing="false" onAction="#muteBtnAction" text="Mute" />
+                        <Slider fx:id="volumeSlider" prefHeight="14.0" prefWidth="60.0" value="100.0" />
+                           </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                       </HBox>
+                   </children>
+               </VBox>
+           </children>
+       </AnchorPane>
+   </bottom>
+   <center>
+      <StackPane fx:id="mediaPane" minHeight="100.0" minWidth="0.0" onKeyPressed="#mediaPaneKeyPressed" onMouseClicked="#mediaPaneMouseClicked" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="videoImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <VBox fx:id="subtitlesBox" alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" />
+         </children>
+      </StackPane>
+   </center>
+   <right>
+      <VBox fx:id="translationPane" style="-fx-background-color: &quot;#f4f4f4&quot;;" BorderPane.alignment="CENTER">
+         <children>
+            <Text fx:id="selectedWord" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello">
+               <font>
+                  <Font name="Arial" size="37.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Варианты перевода:">
+               <font>
+                  <Font name="Arial" size="27.0" />
+               </font>
+            </Text>
+            <Separator prefWidth="200.0" />
+            <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: &quot;#f4f4f4&quot;;" VBox.vgrow="ALWAYS">
+               <content>
+                  <VBox fx:id="translations" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" />
+               </content>
+            </ScrollPane>
+            <Separator prefWidth="200.0" />
+            <HBox>
+               <children>
+                  <Button fx:id="addAllBtn" mnemonicParsing="false" onAction="#addAllBtnAction" text="Add all" />
+                  <Pane HBox.hgrow="ALWAYS" />
+                  <MenuButton fx:id="languagesMenu" mnemonicParsing="false" popupSide="TOP" text="Language" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </right>
+</BorderPane>
